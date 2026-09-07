@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nanisimo Nail Academy</title>
+  <meta name="description" content="Професионално обучение по маникюр в Русе. Курсове за начинаещи и напреднали  от основите до акрил и гел изграждане." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#FAF6F1',
+            foreground: '#2C1810',
+            card: '#FFF8F3',
+            'card-foreground': '#2C1810',
+            primary: '#B8736A',
+            'primary-foreground': '#ffffff',
+            secondary: '#F0DDD6',
+            'secondary-foreground': '#2C1810',
+            muted: '#EDE0D8',
+            'muted-foreground': '#8B6B62',
+            accent: '#C4857A',
+            'accent-foreground': '#ffffff',
+            border: 'rgba(180, 120, 100, 0.18)',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .nav-blend {
+      mix-blend-mode: difference;
+      color: white;
+    }
+    #nav.scrolled {
+      background: #FAF6F1;
+      box-shadow: 0 1px 0 rgba(180, 120, 100, 0.15);
+    }
+    #nav.scrolled .nav-blend {
+      mix-blend-mode: normal;
+      color: #2C1810;
+    }
+    .addon-check {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #B8736A;
+      background: #FFF8F3;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      flex-shrink: 0;
+    }
+    .addon-check:checked {
+      background: #B8736A;
+      box-shadow: 0 2px 10px rgba(184, 115, 106, 0.35);
+    }
+    .addon-check::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 12px;
+      height: 7px;
+      border-left: 2.5px solid #ffffff;
+      border-bottom: 2.5px solid #ffffff;
+      transform: translate(-50%, -62%) rotate(-45deg);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+    .addon-check:checked::after {
+      opacity: 1;
+    }
+    #pedicure-box {
+      background: #EDE0D8;
+      filter: grayscale(1);
+      opacity: 0.75;
+      transition: background 0.3s ease, filter 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
+    }
+    #pedicure-box:hover {
+      opacity: 0.85;
+    }
+    #pedicure-box.checked {
+      background: #FFF8F3;
+      filter: none;
+      opacity: 1;
+      border-color: rgba(184, 115, 106, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground">
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="font-serif nav-blend tracking-wide hover:opacity-70 transition-opacity text-lg font-semibold">Nanisimo Nail Academy</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/#about" class="nav-link nav-blend hover:opacity-70 transition-opacity text-sm tracking-wide">За нас</a>
+        <a href="/#courses" class="nav-link nav-blend hover:opacity-70 transition-opacity text-sm tracking-wide">Курсове</a>
+        <a href="/#questions" class="nav-link nav-blend hover:opacity-70 transition-opacity text-sm tracking-wide">Въпроси</a>
+        <a href="/#location" class="nav-link nav-blend hover:opacity-70 transition-opacity text-sm tracking-wide">Контакти</a>
+        <button type="button" onclick="openSignupModal()" class="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm hover:opacity-90 transition-opacity">Запишете се</button>
+      </div>
+      <button id="menu-toggle" class="md:hidden nav-blend" onclick="toggleMobileMenu()">
+        <svg class="icon-burger" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg class="icon-close hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-transparent px-6 py-6 flex flex-col gap-5">
+      <a href="/#about" class="text-left nav-blend hover:opacity-70 transition-opacity">За нас</a>
+      <a href="/#courses" class="text-left nav-blend hover:opacity-70 transition-opacity">Курсове</a>
+      <a href="/#questions" class="text-left nav-blend hover:opacity-70 transition-opacity">Въпроси</a>
+      <a href="/#location" class="text-left nav-blend hover:opacity-70 transition-opacity">Контакти</a>
+      <button type="button" onclick="openSignupModal()" class="bg-primary text-primary-foreground px-5 py-3 rounded-full text-sm hover:opacity-90 transition-opacity w-full text-center">Запишете се</button>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <section id="hero" class="relative min-h-screen flex items-center overflow-hidden -mt-20">
+      <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1600&h=1000&fit=crop&auto=format" alt="Маникюр в студиото" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-[#2C1810]/55"></div>
+      </div>
+      <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 w-full">
+        <div class="max-w-2xl mt-20">
+          <h1 class="font-serif text-[clamp(2.6rem,5vw,4rem)] font-extrabold text-[#F0DDD6]" style="background-position-y: 1000px;">Nanisimo Beauty Studio</h1>
+          <p class="text-[#F0DDD6]/80 text-sm tracking-[0.2em] uppercase mb-4">Професионални курсове по маникюр</p>
+          <h1 class="text-white mb-6 leading-[1.15] font-serif text-[clamp(2.6rem,5vw,4rem)] font-semibold">Научи изкуството на <em class="italic text-[#F0DDD6]">перфектния маникюр</em></h1>
+          <p class="text-white/75 mb-10 leading-relaxed max-w-md" style="font-size:1.05rem">От основите до напредналите техники - курсове за всяко ниво, водени от опитен специалист с дългогодишна практика в студиото.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/#courses" class="inline-block bg-primary text-white px-8 py-3.5 rounded-full hover:opacity-90 transition-opacity text-sm tracking-wide">Разгледайте курсовете</a>
+            <a href="/#about" class="inline-block border border-white/50 text-white px-8 py-3.5 rounded-full hover:bg-white/10 transition-colors text-sm tracking-wide">За нас</a>
+          </div>
+        </div>
+      </div>
+      <a href="/#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white/90 transition-colors animate-bounce">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </a>
+    </section>
+
+    <section id="about" class="py-12 bg-background">
+      <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+        <div class="relative">
+          <div class="rounded-3xl overflow-hidden aspect-[4/5] bg-secondary">
+            <img src="./assets/nani.png" alt="Инструктор" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-4 md:-right-8 bg-card border border-border rounded-2xl px-6 py-4 shadow-lg">
+            <div class="font-serif text-[1.8rem] font-semibold text-primary">8+</div>
+            <div class="text-muted-foreground text-xs">години опит</div>
+          </div>
+        </div>
+
+        <!-- Hand decoration -->
+        <div id="hand-container" class="fixed top-0 bottom-0 z-50 flex items-center justify-center pointer-events-none">
+          <img id="hand-open" src="./assets/hand-open.png" alt="" class="fixed h-[50vh] right-0 opacity-0 transition-opacity duration-300" />
+          <img id="hand-closed" src="./assets/hand-closed.png" alt="" class="fixed h-[50vh] right-0 opacity-0 transition-opacity duration-300" />
+        </div>
+
+        <div>
+          <p class="text-primary text-sm tracking-[0.18em] uppercase mb-4">Запознайте се с инструктора</p>
+          <h2 id="about-instructor" class="mb-6 text-foreground leading-tight font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-semibold">Страстта към красотата <em class="italic">е моята мисия</em></h2>
+          <p class="text-muted-foreground mb-5 leading-relaxed">С над осем години практика като нейл техник и собственик на студио, аз съм посветена на предаването на знания и умения на следващото поколение специалисти. Всеки курс е изграден върху реален опит и актуалните тенденции в индустрията.</p>
+          <p class="text-muted-foreground mb-8 leading-relaxed">Студиото ми е не само работно място - то е учебна среда, в която студентите работят с реални клиенти под моето наблюдение, за да придобият истинска практика.</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-foreground/80" style="font-size:0.95rem">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Индивидуален формат 1:1 за пълно внимание
+            </li>
+            <li class="flex items-start gap-3 text-foreground/80" style="font-size:0.95rem">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Работа с реални клиенти в студиото
+            </li>
+            <li class="flex items-start gap-3 text-foreground/80" style="font-size:0.95rem">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Сертификат при завършване на курса
+            </li>
+            <li class="flex items-start gap-3 text-foreground/80" style="font-size:0.95rem">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Подкрепа и след края на обучението
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" class="py-12 bg-secondary/30">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-6">
+          <h3 class="text-primary font-bold font-serif tracking-[0.18em] uppercase mb-6">Нашите програми</h3>
+          <h2 class="text-foreground mb-2 font-serif text-[clamp(1.8rem,3vw,2.6rem)] font-semibold">Изберете своя курс</h2>
+          <p class="text-muted-foreground max-w-xl mx-auto">Една програма, изградена от основите нагоре. Започни с основния курс и добави педикюр модула, ако искаш пълното обучение.</p>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <article class="bg-card rounded-3xl overflow-hidden border border-border shadow-sm">
+            <div class="grid md:grid-cols-2">
+              <div class="relative min-h-52 md:min-h-full bg-secondary overflow-hidden">
+                <img src="assets/hand-1.png" alt="Базов курс" class="absolute inset-0 w-full h-full object-cover" />
+                <div class="absolute top-4 left-4"><span class="bg-card/90 backdrop-blur-sm text-primary border border-primary/20 px-3 py-1 rounded-full text-xs tracking-wide">Основен курс</span></div>
+              </div>
+              <div class="p-7">
+                <h3 class="text-foreground mb-2 font-serif text-[1.3rem] font-semibold">Базов курс - Маникюр • Ноктопластика</h3>
+                <div class="flex flex-wrap gap-x-4 gap-y-2 mb-4">
+                  <span class="flex items-center gap-1.5 text-muted-foreground text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span id="course-days">20 дни</span>
+                  </span>
+                  <span class="flex items-center gap-1.5 text-muted-foreground text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    1:1 индивидуално
+                  </span>
+                  <span class="flex items-center gap-1.5 text-muted-foreground text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                    Начинаещ
+                  </span>
+                </div>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-5">Превърни страстта си към красотата в професия. Обучение, създадено за напълно начинаещи, които искат да изградят стабилни основи, увереност и реални умения за работа с клиенти.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Индивидуално и групово обучение</span>
+                  <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Работа върху реални модели</span>
+                  <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Поддръжка и изграждане с гел</span>
+                  <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Работа с електрическа пила</span>
+                </div>
+                <div class="pt-5 border-t border-border flex items-end justify-between gap-4">
+                  <div class="flex items-baseline gap-2">
+                    <span id="course-price" class="font-serif text-[2.2rem] font-bold text-primary leading-none">650</span>
+                    <span class="text-muted-foreground font-medium">EUR</span>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-sm text-foreground font-medium flex items-center gap-1.5 justify-end">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span id="course-total-days">20 дни</span>
+                    </div>
+                    <div id="addon-note" class="hidden text-primary text-xs mt-1">вкл. педикюр модул</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <label id="pedicure-box" for="pedicure-check" class="mt-6 rounded-3xl overflow-hidden border border-border block cursor-pointer select-none">
+            <div class="p-6 md:p-7">
+              <div class="flex items-start gap-4">
+                <span class="shrink-0 mt-1">
+                  <input id="pedicure-check" type="checkbox" class="addon-check" />
+                </span>
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-serif text-[1.15rem] font-semibold text-foreground">Педикюр модул</h3>
+                    <span class="addon-tag bg-primary text-white px-2.5 py-0.5 rounded-full text-xs font-medium">+300 EUR</span>
+                    <span class="addon-tag bg-primary text-white px-2.5 py-0.5 rounded-full text-xs font-medium">+10 дни</span>
+                  </div>
+                  <p class="text-muted-foreground text-sm leading-relaxed mt-2">Надстройка към основния курс. Добави професионалния педикюр модул и получи пълната програма - 30 дни обучение, общо 950 EUR.</p>
+                  <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Основи на професионалния педикюр</span>
+                    <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Подготовка и грижа за стъпалата</span>
+                    <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Работа с електрическа пила при педикюр</span>
+                    <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Хигиена при педикюрни процедури</span>
+                    <span class="bg-secondary text-foreground/70 px-3 py-1 rounded-full text-xs">Практика върху модели</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <div class="text-center mt-10">
+            <a id="read-more" href="/course/basic-slim" class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity tracking-wide">
+              Прочетете повече
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <p id="read-more-hint" class="text-muted-foreground text-xs mt-3">Преглед на основния курс - маникюр и ноктопластика</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="questions" class="py-12 bg-background">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="bg-card border border-border rounded-3xl overflow-hidden shadow-lg">
+          <div class="grid md:grid-cols-2">
+            <div class="p-6 sm:p-8 md:p-10 lg:p-14 flex flex-col justify-center items-center text-center">
+              <h4 class="text-foreground mb-5 font-serif text-[clamp(1.8rem,2vw,2.4rem)] font-semibold leading-tight">ИСКАШ ЛИ ДА ПРЕВЪРНЕШ УМЕНИЕТО В <em class="italic">ПРОФЕСИЯ?</em></h4>
+              <p class="text-muted-foreground mb-3 leading-relaxed max-w-md">Не просто научи как се правят красиви нокти. Научи се да създаваш увереност, качество и резултати, за които клиентите се връщат.</p>
+              <p class="text-muted-foreground mb-3 leading-relaxed max-w-md">Нашите обучения са създадени за хора, които искат да започнат от нулата, да надградят уменията си или да превърнат любовта към маникюра в успешна професия.</p>
+              <p class="text-muted-foreground mb-6 leading-relaxed max-w-md">Тук ще получиш знания, практика и увереност, с които да направиш следващата крачка.</p>
+              <p class="text-primary font-bold font-serif text-sm tracking-[0.18em] uppercase mb-6">Имате въпроси?</p>
+              <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 w-full">
+                <a href="https://instagram.com/nanisimobeautystudio" target="_blank" class="inline-flex items-center justify-center gap-2.5 bg-primary text-white px-6 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity w-full sm:w-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  Пишете ми на Instagram
+                </a>
+                <a href="mailto:nanisimobeautystudio@gmail.com" class="inline-flex items-center justify-center gap-2.5 border border-primary/40 text-primary px-6 py-3.5 rounded-full text-sm hover:bg-primary/5 transition-colors break-all w-full sm:w-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  nanisimobeautystudio<br>@gmail.com
+                </a>
+                <a href="tel:+359892088411" class="inline-flex items-center justify-center gap-2.5 border border-primary/40 text-primary px-6 py-3.5 rounded-full text-sm hover:bg-primary/5 transition-colors w-full sm:w-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  +359 892 088 411
+                </a>
+              </div>
+            </div>
+            <div class="relative min-h-[280px]">
+              <img src="assets/hand-3.png" alt="Разговор за нокти" class="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" class="py-12 bg-secondary/30">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-8 md:mb-16">
+          <p class="text-primary text-sm tracking-[0.18em] uppercase mb-4">Местоположение</p>
+          <h2 class="text-foreground mb-5 font-serif text-[clamp(1.8rem,3vw,2.6rem)] font-semibold">Намерете ни в <em class="italic">Русе</em></h2>
+        </div>
+        <div class="grid md:grid-cols-5 gap-8 items-center">
+          <div class="min-w-0 md:col-span-3 rounded-2xl overflow-hidden shadow-lg bg-secondary">
+            <img src="./assets/location.png" alt="Карта на местоположението" class="w-full h-full object-cover aspect-[4/3] md:aspect-[16/10]" />
+          </div>
+          <div class="min-w-0 md:col-span-2 bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-lg">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="bg-primary/10 rounded-xl p-3 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h3 class="font-serif text-[1.2rem] font-semibold text-foreground mb-1">Адрес</h3>
+                <p class="text-muted-foreground text-sm">ж.к. Родина 1, ул. "Мътивир"<br />Русе, 7006</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 mb-6">
+              <div class="bg-primary/10 rounded-xl p-3 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-serif text-[1.2rem] font-semibold text-foreground mb-1">Телефон</h3>
+                <p class="text-muted-foreground text-sm">+359 892 088 411</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 mb-8">
+              <div class="bg-primary/10 rounded-xl p-3 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div>
+                <h3 class="font-serif text-[1.2rem] font-semibold text-foreground mb-1">Имейл</h3>
+                <p class="text-muted-foreground text-sm break-all">nanisimobeautystudio<br>@gmail.com</p>
+              </div>
+            </div>
+            <a href="https://maps.app.goo.gl/rdsTvZwiJUm4J8Lb6" target="_blank" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity w-full justify-center">
+              Отвори в Google Maps
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact" class="bg-[#2C1810] text-white">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-3 gap-12 mb-12">
+        <div>
+          <h3 class="text-white mb-4 font-serif text-[1.4rem] font-semibold">Nanisimo Nail Academy</h3>
+          <p class="text-white/60 leading-relaxed text-sm mb-6">Професионално обучение по маникюр в уютна и вдъхновяваща среда. Инвестирайте в уменията си днес.</p>
+          <a href="https://instagram.com/nanisimobeautystudio" target="_blank" class="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            @nanisimobeautystudio
+          </a>
+        </div>
+        <div>
+          <h4 class="text-white/40 text-xs tracking-[0.15em] uppercase mb-5">Навигация</h4>
+          <ul class="space-y-3">
+            <li><a href="/#about" class="text-white/60 hover:text-white transition-colors text-sm">За нас</a></li>
+            <li><a href="/#courses" class="text-white/60 hover:text-white transition-colors text-sm">Курсове</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white/40 text-xs tracking-[0.15em] uppercase mb-5">Контакти</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 text-white/60 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+359 892 088 411</span>
+            </li>
+            <li class="flex items-start gap-3 text-white/60 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>nanisimobeautystudio<br>@gmail.com</span>
+            </li>
+            <li class="flex items-start gap-3 text-white/60 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>ж.к. Родина 1, ул. "Мътивир"<br />Русе, 7006</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-white/30 text-xs">&copy; 2026 Nanisimo Nail Academy. Всички права запазени.</p>
+        <p class="text-white/30 text-xs">Направено с любов в България &lt;3</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="signup-modal" class="hidden fixed inset-0 z-[100] p-4 flex items-center justify-center">
+    <div class="absolute inset-0 bg-[#2C1810]/60 backdrop-blur-sm" onclick="closeSignupModal()"></div>
+    <div class="relative bg-card rounded-3xl border border-border shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" role="dialog" aria-modal="true" aria-label="Запишете се">
+      <button type="button" onclick="closeSignupModal()" aria-label="Затвори" class="absolute top-5 right-5 bg-secondary rounded-full p-2 text-foreground hover:opacity-80 transition-opacity">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="p-8 md:p-10">
+        <p class="text-primary text-sm tracking-[0.18em] uppercase mb-2">Запишете се</p>
+        <h3 class="font-serif text-[1.8rem] font-semibold text-foreground mb-2">Свържете се удобно</h3>
+        <p class="text-muted-foreground text-sm leading-relaxed mb-7">Изберете канал за връзка с нас, за да запазите мястото си в курса. Отговаряме бързо на всеки.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="rounded-2xl overflow-hidden bg-secondary flex flex-col">
+            <img src="/assets/location.png" alt="Карта на местоположението" class="w-full h-44 md:h-48 object-cover" />
+            <div class="p-4 pt-3">
+              <p class="text-sm text-foreground mb-3">ж.к. Родина 1, ул. "Мътивир", Русе 7006</p>
+              <a href="https://maps.app.goo.gl/rdsTvZwiJUm4J8Lb6" target="_blank" class="inline-flex w-full justify-center items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm hover:opacity-90 transition-opacity">
+                Отвори в Google Maps
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <a href="https://instagram.com/nanisimobeautystudio" target="_blank" class="flex items-center gap-3.5 bg-background border border-border rounded-2xl px-5 py-4 hover:border-primary/40 transition-colors group">
+              <span class="bg-primary/10 rounded-xl p-2.5 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </span>
+              <span>
+                <span class="block text-xs text-muted-foreground">Instagram</span>
+                <span class="block text-sm font-medium text-foreground group-hover:text-primary transition-colors">@nanisimobeautystudio</span>
+              </span>
+            </a>
+            <a href="mailto:nanisimobeautystudio@gmail.com" class="flex items-center gap-3.5 bg-background border border-border rounded-2xl px-5 py-4 hover:border-primary/40 transition-colors group">
+              <span class="bg-primary/10 rounded-xl p-2.5 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </span>
+              <span>
+                <span class="block text-xs text-muted-foreground">Имейл</span>
+                <span class="block text-sm font-medium text-foreground group-hover:text-primary transition-colors break-all">nanisimobeautystudio<br>@gmail.com</span>
+              </span>
+            </a>
+            <a href="tel:+359892088411" class="flex items-center gap-3.5 bg-background border border-border rounded-2xl px-5 py-4 hover:border-primary/40 transition-colors group">
+              <span class="bg-primary/10 rounded-xl p-2.5 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8736A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <span>
+                <span class="block text-xs text-muted-foreground">Телефон</span>
+                <span class="block text-sm font-medium text-foreground group-hover:text-primary transition-colors">+359 892 088 411</span>
+              </span>
+            </a>
+            <p class="text-muted-foreground text-xs leading-relaxed px-1">Или ще се свържем с вас - просто ни пишете по някой от тези канали.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./scripts/home.js"></script>
+</body>
+</html>
