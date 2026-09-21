@@ -60,7 +60,7 @@ if (pedicureCheck) {
     courseDays.textContent = on ? '30 дни' : '20 дни';
     courseTotalDays.textContent = on ? '30 дни' : '20 дни';
     addonNote.classList.toggle('hidden', !on);
-    readMore.setAttribute('href', on ? '/course/basics' : '/course/basic-slim');
+    readMore.setAttribute('href', on ? '/course/basics/' : '/course/basic-slim/');
     readMoreHint.textContent = on
       ? 'Преглед на пълния курс — маникюр, ноктопластика и педикюр'
       : 'Преглед на основния курс — маникюр и ноктопластика';
