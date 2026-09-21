@@ -22,6 +22,7 @@ function toggleMobileMenu() {
   menu.classList.toggle('hidden');
   btn.querySelector('.icon-burger').classList.toggle('hidden');
   btn.querySelector('.icon-close').classList.toggle('hidden');
+  btn.setAttribute('aria-expanded', String(mobileMenuOpen));
   setNavState();
 }
 

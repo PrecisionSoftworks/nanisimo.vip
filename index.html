@@ -28,7 +28,7 @@
         <a href="/#location" class="nav-link nav-blend hover:opacity-70 transition-opacity text-sm tracking-wide">Контакти</a>
         <button type="button" onclick="openSignupModal()" class="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm hover:opacity-90 transition-opacity">Запишете се</button>
       </div>
-      <button id="menu-toggle" class="md:hidden nav-blend" onclick="toggleMobileMenu()">
+      <button id="menu-toggle" type="button" class="md:hidden nav-blend" aria-label="Меню" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobileMenu()">
         <svg class="icon-burger" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         <svg class="icon-close hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <a href="/#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white/90 transition-colors animate-bounce">
+      <a href="/#about" aria-label="Към секцията За нас" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white/90 transition-colors animate-bounce">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
       </a>
     </section>
@@ -394,6 +394,6 @@
     </div>
   </div>
 
-  <script src="/scripts/home.js?v=045f300927"></script>
+  <script src="/scripts/home.js?v=fefb3d9393"></script>
 </body>
 </html>
