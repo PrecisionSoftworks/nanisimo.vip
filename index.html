@@ -10,105 +10,12 @@
   <meta property="og:url" content="https://nanisimo.vip">
   <title>Nanisimo Nail Academy</title>
   <meta name="description" content="Професионално обучение по маникюр в Русе. Курсове за начинаещи и напреднали  от основите до акрил и гел изграждане." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            background: '#FAF6F1',
-            foreground: '#2C1810',
-            card: '#FFF8F3',
-            'card-foreground': '#2C1810',
-            primary: '#B8736A',
-            'primary-foreground': '#ffffff',
-            secondary: '#F0DDD6',
-            'secondary-foreground': '#2C1810',
-            muted: '#EDE0D8',
-            'muted-foreground': '#8B6B62',
-            accent: '#C4857A',
-            'accent-foreground': '#ffffff',
-            border: 'rgba(180, 120, 100, 0.18)',
-          },
-          fontFamily: {
-            serif: ['Playfair Display', 'serif'],
-            sans: ['DM Sans', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; }
-    .font-serif { font-family: 'Playfair Display', serif; }
-    .nav-blend {
-      mix-blend-mode: difference;
-      color: white;
-    }
-    #nav.scrolled {
-      background: #FAF6F1;
-      box-shadow: 0 1px 0 rgba(180, 120, 100, 0.15);
-    }
-    #nav.scrolled .nav-blend {
-      mix-blend-mode: normal;
-      color: #2C1810;
-    }
-    .addon-check {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid #B8736A;
-      background: #FFF8F3;
-      cursor: pointer;
-      position: relative;
-      transition: background 0.2s ease, box-shadow 0.2s ease;
-      flex-shrink: 0;
-    }
-    .addon-check:checked {
-      background: #B8736A;
-      box-shadow: 0 2px 10px rgba(184, 115, 106, 0.35);
-    }
-    .addon-check::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 12px;
-      height: 7px;
-      border-left: 2.5px solid #ffffff;
-      border-bottom: 2.5px solid #ffffff;
-      transform: translate(-50%, -62%) rotate(-45deg);
-      opacity: 0;
-      transition: opacity 0.15s ease;
-    }
-    .addon-check:checked::after {
-      opacity: 1;
-    }
-    #pedicure-box {
-      background: #EDE0D8;
-      filter: grayscale(1);
-      opacity: 0.75;
-      transition: background 0.3s ease, filter 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
-    }
-    #pedicure-box:hover {
-      opacity: 0.85;
-    }
-    #pedicure-box.checked {
-      background: #FFF8F3;
-      filter: none;
-      opacity: 1;
-      border-color: rgba(184, 115, 106, 0.45);
-    }
-  </style>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/playfair-display-cyrillic-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/playfair-display-latin-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.css?v=8009be0c2c">
 </head>
 <body class="bg-background text-foreground">
   <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
@@ -139,7 +46,10 @@
 
     <section id="hero" class="relative min-h-screen flex items-center overflow-hidden -mt-20">
       <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1600&h=1000&fit=crop&auto=format" alt="Маникюр в студиото" class="w-full h-full object-cover" />
+        <picture class="contents">
+          <source type="image/webp" srcset="/assets/hero-640.webp 640w, /assets/hero-1024.webp 1024w, /assets/hero-1600.webp 1600w" sizes="100vw" />
+          <img src="/assets/hero-studio.jpg" alt="Маникюр в студиото" width="1600" height="1000" fetchpriority="high" decoding="async" class="w-full h-full object-cover" />
+        </picture>
         <div class="absolute inset-0 bg-[#2C1810]/55"></div>
       </div>
       <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 w-full">
@@ -163,18 +73,15 @@
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         <div class="relative">
           <div class="rounded-3xl overflow-hidden aspect-[4/5] bg-secondary">
-            <img src="./assets/nani.png" alt="Инструктор" class="w-full h-full object-cover" />
+            <picture class="contents">
+              <source type="image/webp" srcset="/assets/nani-480.webp 480w, /assets/nani-720.webp 720w, /assets/nani-1086.webp 1086w" sizes="(min-width: 768px) 50vw, 100vw" />
+              <img src="/assets/nani.png" alt="Инструктор" width="1086" height="1448" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+            </picture>
           </div>
           <div class="absolute -bottom-6 -right-4 md:-right-8 bg-card border border-border rounded-2xl px-6 py-4 shadow-lg">
             <div class="font-serif text-[1.8rem] font-semibold text-primary">8+</div>
             <div class="text-muted-foreground text-xs">години опит</div>
           </div>
-        </div>
-
-        <!-- Hand decoration -->
-        <div id="hand-container" class="fixed top-0 bottom-0 z-50 flex items-center justify-center pointer-events-none">
-          <img id="hand-open" src="./assets/hand-open.png" alt="" class="fixed h-[50vh] right-0 opacity-0 transition-opacity duration-300" />
-          <img id="hand-closed" src="./assets/hand-closed.png" alt="" class="fixed h-[50vh] right-0 opacity-0 transition-opacity duration-300" />
         </div>
 
         <div>
@@ -215,7 +122,10 @@
           <article class="bg-card rounded-3xl overflow-hidden border border-border shadow-sm">
             <div class="grid md:grid-cols-2">
               <div class="relative min-h-52 md:min-h-full bg-secondary overflow-hidden">
-                <img src="assets/hand-1.png" alt="Базов курс" class="absolute inset-0 w-full h-full object-cover" />
+                <picture class="contents">
+                  <source type="image/webp" srcset="/assets/hand-1-480.webp 480w, /assets/hand-1-720.webp 720w, /assets/hand-1-1086.webp 1086w" sizes="(min-width: 768px) 384px, 100vw" />
+                  <img src="/assets/hand-1.png" alt="Базов курс" width="1086" height="1449" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+                </picture>
                 <div class="absolute top-4 left-4"><span class="bg-card/90 backdrop-blur-sm text-primary border border-primary/20 px-3 py-1 rounded-full text-xs tracking-wide">Основен курс</span></div>
               </div>
               <div class="p-7">
@@ -320,7 +230,10 @@
               </div>
             </div>
             <div class="relative min-h-[280px]">
-              <img src="assets/hand-3.png" alt="Разговор за нокти" class="absolute inset-0 w-full h-full object-cover" />
+              <picture class="contents">
+                <source type="image/webp" srcset="/assets/hand-3-480.webp 480w, /assets/hand-3-800.webp 800w, /assets/hand-3-1448.webp 1448w" sizes="(min-width: 768px) 50vw, 100vw" />
+                <img src="/assets/hand-3.png" alt="Разговор за нокти" width="1448" height="1086" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+              </picture>
             </div>
           </div>
         </div>
@@ -335,7 +248,10 @@
         </div>
         <div class="grid md:grid-cols-5 gap-8 items-center">
           <div class="min-w-0 md:col-span-3 rounded-2xl overflow-hidden shadow-lg bg-secondary">
-            <img src="./assets/location.png" alt="Карта на местоположението" class="w-full h-full object-cover aspect-[4/3] md:aspect-[16/10]" />
+            <picture class="contents">
+              <source type="image/webp" srcset="/assets/location-480.webp 480w, /assets/location-800.webp 800w, /assets/location-1362.webp 1362w" sizes="(min-width: 768px) 60vw, 100vw" />
+              <img src="/assets/location.png" alt="Карта на местоположението" width="1362" height="812" loading="lazy" decoding="async" class="w-full h-full object-cover aspect-[4/3] md:aspect-[16/10]" />
+            </picture>
           </div>
           <div class="min-w-0 md:col-span-2 bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-lg">
             <div class="flex items-start gap-4 mb-6">
@@ -431,7 +347,10 @@
         <p class="text-muted-foreground text-sm leading-relaxed mb-7">Изберете канал за връзка с нас, за да запазите мястото си в курса. Отговаряме бързо на всеки.</p>
         <div class="grid md:grid-cols-2 gap-6">
           <div class="rounded-2xl overflow-hidden bg-secondary flex flex-col">
-            <img src="/assets/location.png" alt="Карта на местоположението" class="w-full h-44 md:h-48 object-cover" />
+            <picture class="contents">
+              <source type="image/webp" srcset="/assets/location-480.webp 480w, /assets/location-800.webp 800w, /assets/location-1362.webp 1362w" sizes="(min-width: 768px) 336px, 100vw" />
+              <img src="/assets/location.png" alt="Карта на местоположението" width="1362" height="812" loading="lazy" decoding="async" class="w-full h-44 md:h-48 object-cover" />
+            </picture>
             <div class="p-4 pt-3">
               <p class="text-sm text-foreground mb-3">ж.к. Родина 1, ул. "Мътивир", Русе 7006</p>
               <a href="https://maps.app.goo.gl/rdsTvZwiJUm4J8Lb6" target="_blank" class="inline-flex w-full justify-center items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm hover:opacity-90 transition-opacity">
@@ -475,6 +394,6 @@
     </div>
   </div>
 
-  <script src="./scripts/home.js"></script>
+  <script src="/scripts/home.js?v=045f300927"></script>
 </body>
 </html>
